@@ -9,13 +9,18 @@ public class Main {
         Boot boot3 = new Boot("Speedster01","Motorboot", 2, true, 28);
         Boot boot4 = new Boot("floatfun1","Segelboot", 16, true, 92);
         Boot boot5 = new Boot("Marry", "Segelboot", 2, false, 16);
+        Jetsky jetsky1 = new Jetsky("FastJet", 2, true, 21);
+        Car car1 = new Car("BMW", "325 E36", 5, true, 68.50);
 
         Bootsverleih aquaCodes = new Bootsverleih("AquaCodes");
-        aquaCodes.addBoot(boot1);
-        aquaCodes.addBoot(boot2);
-        aquaCodes.addBoot(boot3);
-        aquaCodes.addBoot(boot4);
-        aquaCodes.addBoot(boot5);
+        aquaCodes.addObject(boot1);
+        aquaCodes.addObject(boot2);
+        aquaCodes.addObject(boot3);
+        aquaCodes.addObject(boot4);
+        aquaCodes.addObject(boot5);
+        aquaCodes.addObject(boot5);
+        aquaCodes.addObject(jetsky1);
+        aquaCodes.addObject(car1);
 
 
         Person andreas = new Person("Andreas", true);
@@ -52,11 +57,13 @@ public class Main {
         aquaCodes.printFlotte();
         System.out.println("");
 
-        System.out.println(andreas.favoriteBoat().getName());
-        System.out.println(andreas.unfavoriteBoat().getName());
+        
+        andreas.favoriteObjekt();
+        System.out.println("");
+        andreas.unfavoriteObjekt();
         
 
         System.out.println("");
-        System.out.println("das boot mit dem meisten umsatz der letzten 30 Tagen ist: " + aquaCodes.boatWithHighestRevenue(30));
+        System.out.println("das boot mit dem meisten umsatz der letzten 30 Tagen ist: " + aquaCodes.objectWithHighestRevenue(30));
     }
 }

@@ -1,35 +1,25 @@
 import java.time.LocalDateTime;
 
-public class Boot extends Mietobjekt {
-    // länge, breite, tiefgang, freiboard
-    // hasMotor: segelboot (masthöhe) vs. motorboot
-    // personCount
-    // isLicenceRequired 
-    // availability: Reservation[] from, to, person
-    // private String name;
-     private String type; // Segelboot | Motorboot
-    // private int personCount;
-    // private boolean isLicenceRequired;
-    // private double pricePerHour;
-    // private ArrayList<Reservation> reservations;
-    // private int rentalCount = 0;
-    // private Bootsverleih owner;
-    // private double umsatz;
+public class Car extends Mietobjekt{
 
+    private String type;
 
-    public Boot(String name, String type, int personCount, boolean isLicenceRequired, double pricePerHour) {
+    public Car(String name, String type, int personCount, boolean isLicenceRequired, double pricePerHour) {
         super(name, personCount, isLicenceRequired, pricePerHour);
-        this.setType(type);
-    }
-
-    public void setType(String type) {
-        if(!type.equals("Segelboot") && !type.equals("Motorboot")) throw new IllegalArgumentException("Bootstyp muss Segelboot oder Motorboot sein");
-        this.type = type;
+        setType(type);
+       
     }
     
+
+  
     public String getType() {
         return type;
     }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
 
 
     public Reservation addReservation(LocalDateTime from, LocalDateTime to, Person p) {
@@ -52,5 +42,4 @@ public class Boot extends Mietobjekt {
 
         return reservation;
     }
-
 }
