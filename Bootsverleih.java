@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Bootsverleih {
@@ -95,13 +98,47 @@ public class Bootsverleih {
     }
 
     public Boot boatWithHighestRevenue(int lastNDays) {
-        /// noch offen
+        LocalDateTime toTime = LocalDateTime.now().with(LocalTime.MAX);
+        LocalDateTime fromTime =  LocalDateTime.now().minusDays(lastNDays).with(LocalTime.MIN);
+    
+        double mostRevenue = 0;
+        Boot topBoat = null;
+        System.out.println("");
+        System.out.println("From: " + fromTime + " To: " + toTime);
+        System.out.println("");
 
-    /*
-     * implementiere eine Methode, die das Boot mit dem höchsten Umsatz in einer letzten
-     * Zeitperiode zurückgibt public Boot boatWithHighestRevenue(int lastNDays) 
-     */
-
-     return null;
+        for (Boot b : this.boote) {
+            double boatRevenueSum = 0;
+            
+            System.out.println("Checking boat: " + b.getName());
+    
+            for (Reservation r : b.getReservations()) {
+                System.out.println("Reservation from: " + r.getFrom() + " to: " + r.getTo());
+    
+                if (r.getFrom().isBefore(toTime) && r.getTo().isAfter(fromTime)) {
+                    LocalDateTime start = r.getFrom().isAfter(fromTime) ? r.getFrom() : fromTime;
+                    LocalDateTime end = r.getTo().isBefore(toTime) ? r.getTo() : toTime;
+    
+                    System.out.println("Adjusted Reservation from: " + start + " to: " + end);
+    
+                    boatRevenueSum += Reservation.reservationTimeInHours(start, end) * b.getPicePerHour();
+                    System.out.println("Current boat revenue sum: " + boatRevenueSum);
+                }
+            }
+    
+            if (mostRevenue < boatRevenueSum) {
+                mostRevenue = boatRevenueSum;
+                topBoat = b;
+                System.out.println("New top boat: " + topBoat.getName() + " with revenue: " + mostRevenue);
+            }
+        }
+    
+        if (topBoat == null) {
+            System.out.println("No boat found with reservations in the given time period.");
+        } else {
+            System.out.println("Top boat: " + topBoat.getName() + " with revenue: " + mostRevenue);
+        }
+    
+        return topBoat;
     }
 }

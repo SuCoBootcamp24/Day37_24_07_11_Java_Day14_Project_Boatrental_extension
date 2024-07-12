@@ -105,7 +105,7 @@ public class Boot {
         p.addBoatInBoatHistory(this);
         getBoatOwner().addKunde(p);
 
-        double sum = reservationTimeInHours(from, to) * getPicePerHour();
+        double sum = Reservation.reservationTimeInHours(from, to) * getPicePerHour();
         getBoatOwner().setUmsatz(getBoatOwner().getUmsatz() + sum);
         setBootUmsatz(getBootUmsatz() + sum);
 
@@ -113,12 +113,6 @@ public class Boot {
         return reservation;
     }
 
-    private long reservationTimeInHours(LocalDateTime start, LocalDateTime end) {
-        Duration duration = Duration.between(start, end);
-         
-        long hours = duration.toHours();
-        return hours;
-    }
  
     private boolean checkIsAvailable(LocalDateTime from, LocalDateTime to) {
         // if can find a reservation that overlaps --> return false

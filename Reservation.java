@@ -1,3 +1,4 @@
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -21,6 +22,13 @@ public class Reservation {
     }
     public LocalDateTime getTo() {
         return to;
+    }
+
+     public static long reservationTimeInHours(LocalDateTime start, LocalDateTime end) {
+        Duration duration = Duration.between(start, end);
+         
+        long hours = duration.toHours();
+        return hours;
     }
 
     @Override

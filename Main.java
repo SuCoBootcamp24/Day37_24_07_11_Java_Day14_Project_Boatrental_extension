@@ -28,6 +28,9 @@ public class Main {
         LocalDateTime montag12 = LocalDateTime.of(2024, Month.JULY, 15, 12, 0);
         LocalDateTime sonntag2025 = LocalDateTime.of(2025, Month.JULY, 14, 11, 1);
         LocalDateTime montag2025 = LocalDateTime.of(2025, Month.JULY, 15, 12, 0);
+
+        LocalDateTime letztenFreitag = LocalDateTime.of(2024, Month.JULY, 5, 11, 1);
+        LocalDateTime letztenSonntag = LocalDateTime.of(2024, Month.JULY, 7, 12, 0);
         
         // boot3.addReservation(sonnabend12, sonntag11, peter); // Licence required!
 
@@ -37,6 +40,7 @@ public class Main {
         boot2.addReservation(sonntag2025, montag2025, andreas);
         boot1.addReservation(sonntag2025, montag2025, andreas);
         boot5.addReservation(sonntag2025, montag2025, peter);
+        boot5.addReservation(letztenFreitag, letztenSonntag, peter);
 
         boot3.addReservation(sonntagNach11, montag12, anton);
 
@@ -52,5 +56,7 @@ public class Main {
         System.out.println(andreas.unfavoriteBoat().getName());
         
 
+        System.out.println("");
+        System.out.println("das boot mit dem meisten umsatz der letzten 30 Tagen ist: " + aquaCodes.boatWithHighestRevenue(30));
     }
 }
