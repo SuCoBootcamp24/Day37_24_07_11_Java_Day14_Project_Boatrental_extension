@@ -129,7 +129,7 @@ public class Bootsverleih {
         }
 
         System.out.println("");
-        System.out.println("- Jetskeys:");
+        System.out.println("- Jetskys:");
         for (Jetsky j : jetskys) {
             System.out.println("\t" + j.getName());
         }

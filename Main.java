@@ -77,8 +77,6 @@ public class Main {
         System.out.println("das boot mit dem meisten umsatz der letzten 20 Tagen ist: " + aquaCodes.objectWithHighestRevenue(20).getName());
         System.out.println("");
 
-        andreas.favoriteObjekt();
-        
         System.out.println("");
         andreas.favoriteObjekt();
         System.out.println("");
