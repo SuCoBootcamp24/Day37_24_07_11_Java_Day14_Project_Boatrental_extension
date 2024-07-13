@@ -29,6 +29,14 @@ public class Bootsverleih {
     public ArrayList<Boot> getBoote() {
         return boote;
     }
+
+    public ArrayList<Jetsky> getJetskys() {
+        return jetskys;
+    }
+
+    public ArrayList<Mietobjekt> getAllObjekts() {
+        return allObjekts;
+    }
     
     public void addObject(Mietobjekt object) {
 
@@ -63,7 +71,6 @@ public class Bootsverleih {
     
     
     //-------------
-    
     // the customer with the most reservation (count)
     public Person topCustomer() {
         int mostReservation = 0;
@@ -99,29 +106,37 @@ public class Bootsverleih {
 
     //------
 
+    public void printAllReservation() {
+        for (Mietobjekt o : getAllObjekts()) {
+            System.out.print("\n- ");
+            o.printReservations();
+            System.out.println("");
+        }
+    }
+
     public void printKunden(){
         System.out.println("Kunden von " + getName() + ":");
         for (Person p : kunden) {
-            System.out.println(p.getName());
+            System.out.println("- " + p.getName());
         }
     }
 
     public void printFlotte(){
         System.out.println("Die Flotte von " + getName() + ":");
-        System.out.println("Boote:");
+        System.out.println("- Boote:");
         for (Boot b : boote) {
-            System.out.println(b.getName());
+            System.out.println("\t" + b.getName());
         }
 
         System.out.println("");
-        System.out.println("Jetskeys:");
+        System.out.println("- Jetskeys:");
         for (Jetsky j : jetskys) {
-            System.out.println(j.getName());
+            System.out.println("\t" + j.getName());
         }
         System.out.println("");
-        System.out.println("Autos:");
+        System.out.println("- Autos:");
         for (Car c : cars) {
-            System.out.println(c.getName());
+            System.out.println("\t" + c.getName());
         }
         System.out.println("");
     }
@@ -133,16 +148,13 @@ public class Bootsverleih {
         Mietobjekt topObj = null;
        
         System.out.println("vom: " + fromTime + " bis: " + toTime);
-
+        System.out.println("");
         for (Mietobjekt o : this.allObjekts) {
             double boatRevenueSum = 0;
-
             for (Reservation r : o.getReservations()) {
-    
                 if (r.getFrom().isBefore(toTime) && r.getTo().isAfter(fromTime)) {
                     LocalDateTime start = r.getFrom().isAfter(fromTime) ? r.getFrom() : fromTime;
                     LocalDateTime end = r.getTo().isBefore(toTime) ? r.getTo() : toTime;
-
                     boatRevenueSum += Reservation.reservationTimeInHours(start, end) * o.getPicePerHour();
                 }
             }
@@ -153,9 +165,7 @@ public class Bootsverleih {
             }
         }
     
-        if (topObj == null) {
-            return null;
-        }     
+        if (topObj == null) return null;  
         return topObj;
     }
 }

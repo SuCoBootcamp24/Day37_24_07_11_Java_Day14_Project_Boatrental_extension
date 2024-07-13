@@ -26,44 +26,78 @@ public class Main {
         Person andreas = new Person("Andreas", true);
         Person anton = new Person("Anton", true);
         Person peter = new Person("Peter", false);
-
-        LocalDateTime sonnabend12 = LocalDateTime.of(2024, Month.JULY, 13, 12, 0);
-        LocalDateTime sonntag11 = LocalDateTime.of(2024, Month.JULY, 14, 11, 0);
-        LocalDateTime sonntagNach11 = LocalDateTime.of(2024, Month.JULY, 14, 11, 1);
-        LocalDateTime montag12 = LocalDateTime.of(2024, Month.JULY, 15, 12, 0);
-        LocalDateTime sonntag2025 = LocalDateTime.of(2025, Month.JULY, 14, 11, 1);
-        LocalDateTime montag2025 = LocalDateTime.of(2025, Month.JULY, 15, 12, 0);
-
-        LocalDateTime letztenFreitag = LocalDateTime.of(2024, Month.JULY, 5, 11, 1);
-        LocalDateTime letztenSonntag = LocalDateTime.of(2024, Month.JULY, 7, 12, 0);
+        // von Fr. 14.6 bis So. 16.6 12uhr 3tage
+        LocalDateTime start1 = LocalDateTime.of(2024, Month.JUNE, 14, 12, 0);
+        LocalDateTime end1 = LocalDateTime.of(2024, Month.JUNE, 16, 12, 0);
+        // von Fr. 5.7 7uhr bis So. 21.7 12uhr 16tage
+        LocalDateTime start2 = LocalDateTime.of(2024, Month.JULY, 5, 8, 0);
+        LocalDateTime end2 = LocalDateTime.of(2024, Month.JULY, 21, 12, 0);
         
+        // von Fr. 19.7 7uhr bis So. 21.7 12uhr 3tage
+        LocalDateTime start3 = LocalDateTime.of(2024, Month.JULY, 19, 8, 0);
+        LocalDateTime end3 = LocalDateTime.of(2024, Month.JULY, 21, 12, 0);
+        
+        // von Mo. 29.7 7uhr bis Mo. 5.8 12uhr 14tage
+        LocalDateTime start4 = LocalDateTime.of(2024, Month.JULY, 29, 8, 0);
+        LocalDateTime end4 = LocalDateTime.of(2024, Month.AUGUST, 5, 12, 0);
+        
+        // von Mo. 1.7 7uhr bis Mo. 1.8 12uhr 32tage
+        LocalDateTime start5 = LocalDateTime.of(2024, Month.JULY, 29, 8, 0);
+        LocalDateTime end5 = LocalDateTime.of(2024, Month.AUGUST, 5, 12, 0);
+        
+
         // boot3.addReservation(sonnabend12, sonntag11, peter); // Licence required!
 
-        boot3.addReservation(sonnabend12, sonntag11, andreas);
-        boot1.addReservation(sonnabend12, sonntag11, andreas);
-        boot2.addReservation(sonnabend12, sonntag11, andreas);
-        boot2.addReservation(sonntag2025, montag2025, andreas);
-        boot1.addReservation(sonntag2025, montag2025, andreas);
-        boot5.addReservation(sonntag2025, montag2025, peter);
-        boot5.addReservation(letztenFreitag, letztenSonntag, peter);
+        boot3.addReservation(start1, end1, andreas);
+        boot1.addReservation(start1, end1, andreas);
+        boot2.addReservation(start2, end2, andreas);
+        // boot2.addReservation(start2, end3, anton); // Exeption da überschneidung || Check
+        boot1.addReservation(start4, end4, andreas);
+        boot5.addReservation(start3, end3, peter);
+        boot5.addReservation(start4, end4, peter);
+        // boot3.addReservation(start1, end1, anton); // Exeption da überschneidung || Check
 
-        boot3.addReservation(sonntagNach11, montag12, anton);
+        // jetsky1.addReservation(start1, end1, peter); // Exeption da keine Licence || Check
+        jetsky1.addReservation(start3, end3, anton);
+        // jetsky1.addReservation(start4, end4, peter); // Exeption da keine Licence || Check
+        
+        car1.addReservation(start5, end5, anton);
+        car1.addReservation(start2, end2, andreas);
+        
 
-        boot3.printReservations();
-
-        aquaCodes.printKunden();
-
+        aquaCodes.printAllReservation();
         System.out.println("");
+        
+        aquaCodes.printKunden();
+        System.out.println("");
+
         aquaCodes.printFlotte();
         System.out.println("");
 
+        System.out.println("das boot mit dem meisten umsatz der letzten 20 Tagen ist: " + aquaCodes.objectWithHighestRevenue(20).getName());
+        System.out.println("");
+
+        andreas.favoriteObjekt();
         
+        System.out.println("");
         andreas.favoriteObjekt();
         System.out.println("");
         andreas.unfavoriteObjekt();
+        System.out.println("");
+
+        System.out.println("");
+        anton.favoriteObjekt();
+        System.out.println("");
+        anton.unfavoriteObjekt();
+        System.out.println("");
+
+        System.out.println("");
+        peter.favoriteObjekt();
+        System.out.println("");
+        peter.unfavoriteObjekt();
+        System.out.println("");
         
 
         System.out.println("");
-        System.out.println("das boot mit dem meisten umsatz der letzten 30 Tagen ist: " + aquaCodes.objectWithHighestRevenue(30));
-    }
+           }
 }
